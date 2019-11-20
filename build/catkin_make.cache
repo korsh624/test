@@ -1,0 +1,2 @@
+test_pub
+-DCATKIN_DEVEL_PREFIX=/home/ros/test_bot/devel -DCMAKE_INSTALL_PREFIX=/home/ros/test_bot/install -G Unix Makefiles

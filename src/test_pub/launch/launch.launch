@@ -1,0 +1,5 @@
+<launch>
+    <node pkg ="test_pub" type="test_pub_node" name="publisher" output="screen">
+        <param name = "speed" value="1000"/>
+    </node>
+</launch>
