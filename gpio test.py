@@ -7,9 +7,9 @@ time.sleep(1)
 pi = pigpio.pi()
 STEER = 18 # сервопривод
 time.sleep(1)
-pi.set_servo_pulsewidth(STEER, 90)
+pi.set_servo_pulsewidth(STEER, 0)
 time.sleep(2)
-While (True):
+while (True):
     angle=int(input())
     pi.set_servo_pulsewidth(STEER,angle)
 
