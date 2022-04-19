@@ -9,6 +9,7 @@ STEER = 18 # сервопривод
 time.sleep(1)
 pi.set_servo_pulsewidth(STEER, 0)
 time.sleep(2)
+angle=1500
 while (True):
     angle=int(input())
     pi.set_servo_pulsewidth(STEER,angle)
