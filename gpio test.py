@@ -1,16 +1,15 @@
-from ast import While
-import time
-import os
-import pigpio
-os.system("sudo pigpiod")  # Launching GPIO library
-time.sleep(1)
-pi = pigpio.pi()
-STEER = 18 # сервопривод
-time.sleep(1)
-pi.set_servo_pulsewidth(STEER, 0)
-time.sleep(2)
-angle=1500
-while (True):
-    angle=int(input())
-    pi.set_servo_pulsewidth(STEER,angle)
 
+import RPi.GPIO as IO    # подключение библиотеки для работы с контактами ввода/вывода
+import time              # подключение библиотеки для работы с задержками
+IO.setwarnings(False)    # отключаем показ любых предупреждений
+IO.setmode (IO.BCM)      # мы будем программировать контакты GPIO по их функциональным номерам (BCM), то есть мы будем обращаться к PIN29 как ‘GPIO5’
+IO.setup(18,IO.OUT)      # инициализируем GPIO19 в качестве цифрового выхода
+p = IO.PWM(19,50)        # инициализируем GPIO19 как контакт для формирования ШИМ сигнала с частотой 50 Гц
+p.start(7.5)             # генерируем ШИМ сигнал с коэффициентом заполнения 7.5% 
+while 1:                             # бесконечный цикл                                    
+        p.ChangeDutyCycle(7.5)       # изменяем коэффициент заполнения чтобы повернуть сервомотор в положение 90º
+        time.sleep(1)                # задержка на 1 секунду
+        p.ChangeDutyCycle(12.5)      # изменяем коэффициент заполнения чтобы повернуть сервомотор в положение 180º
+        time.sleep(1)                # задержка на 1 секунду
+        p.ChangeDutyCycle(2.5)       # изменяем коэффициент заполнения чтобы повернуть сервомотор в положение 0º
+        time.sleep(1)  
